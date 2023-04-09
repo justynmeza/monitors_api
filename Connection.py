@@ -52,6 +52,16 @@ class Connection:
 
         return users_json
 
+    def user_insert(self, name, lastname, username, password):
+        query = (
+            "INSERT INTO tbl_users (name, lastname, username, password) "+
+            f"VALUES ('{name}', '{lastname}', '{username}', '{password}')"
+        )
+
+        self.cursor.execute(query)
+        self.connect.commit()
+        self.cursor.close()
+
     def monitors(self):
         monitors_info = []
 
@@ -75,6 +85,16 @@ class Connection:
         monitors_json = json.dumps(monitors_info)
         
         return monitors_json
+
+    def monitor_insert(self, price, qualification, size_screen, max_resolution, brand, update_rate):
+        query = (
+            "INSERT INTO TBL_MONITORS (price, qualification, size_screen, max_resolution, brand, update_rate) "+
+            f"VALUES ('{price}', '{qualification}', '{size_screen}', '{max_resolution}', '{brand}', '{update_rate}')"
+        )
+
+        self.cursor.execute(query)
+        self.connect.commit()
+        self.cursor.close()
 
     def monitors_more_selling(self):
         monitors_info = []

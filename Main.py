@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from Connection import Connection
 
 class Main():
     data = Flask(__name__)
 
+    #GET
     @data.route('/data/users')
     def users_action():
         connect = Connection()
@@ -109,7 +110,41 @@ class Main():
 
         print(monitors)
         return(monitors)
+    
 
+    #POST
+    @data.route('/data/monitors', methods=['POST'])
+    def monitor_insert_action():
+        try:
+            price = request.json['price']
+            qualification = request.json['qualification']
+            size_screen = request.json['size_screen']
+            max_resolution = request.json['max_resolution']
+            brand = request.json['brand']
+            update_rate = request.json['update_rate']
+
+            connect = Connection()
+            connect.monitor_insert(price=price, qualification=qualification, size_screen=size_screen, max_resolution=max_resolution, brand=brand, update_rate=update_rate)
+
+            return jsonify({'messaje': 'input successfully'})
+        except Exception as ex:
+            return jsonify({'messaje': 'Error'})
+
+    @data.route('/data/users', methods=['POST'])
+    def user_insert_action():
+        try:
+            name = request.json['name']
+            lastname = request.json['lastname']
+            username = request.json['username']
+            password = request.json['password']
+
+            connect = Connection()
+            connect.user_insert(name=name, lastname=lastname, username=username, password=password)
+
+            return jsonify({'messaje': 'input successfully'})
+        except Exception as ex:
+            return jsonify({'messaje': 'Error'})
+        
 
     data.run(debug=True)
 
