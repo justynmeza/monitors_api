@@ -145,6 +145,35 @@ class Main():
         except Exception as ex:
             return jsonify({'messaje': 'Error'})
         
+    #UPDATE
+    
+    @data.route('/data/monitors/<id>', methods=['PUT'])
+    def monitors_update_action(id):
+        try:
+            price = request.json['price']
+            qualification = request.json['qualification']
+            size_screen = request.json['size_screen']
+            max_resolution = request.json['max_resolution']
+            brand = request.json['brand']
+            update_rate = request.json['update_rate']
+
+            connect = Connection()
+            connect.monitor_update(id=id, price=price, qualification=qualification, size_screen=size_screen, max_resolution=max_resolution, brand=brand, update_rate=update_rate)
+
+            return jsonify({'messaje': 'update successfully'})
+        except Exception as ex:
+            return jsonify({'messaje': 'Error'})
+        
+
+    @data.route('/data/monitors/<id>', methods=['DELETE'])
+    def monitors_delete_action(id):
+        try:
+            connect = Connection()
+            connect.monitor_delete(id=id)
+
+            return jsonify({'messaje': 'delete successfully'})
+        except Exception as ex:
+            return jsonify({'messaje': 'Error'})
 
     data.run(debug=True)
 

@@ -96,6 +96,26 @@ class Connection:
         self.connect.commit()
         self.cursor.close()
 
+    def monitor_delete(self, id):
+        query = (
+            f"DELETE FROM TBL_MONITORS WHERE id_monitor = '{id}'"
+        )
+
+        self.cursor.execute(query)
+        self.connect.commit()
+        self.cursor.close()
+
+    def monitor_update(self, id, price, qualification, size_screen, max_resolution, brand, update_rate):
+        query = (
+            "UPDATE TBL_MONITORS "+
+            f"SET price = '{price}', qualification = '{qualification}', size_screen = '{size_screen}', max_resolution = '{max_resolution}', brand = '{brand}', update_rate = '{update_rate}' "+ 
+            f"WHERE id_monitor = '{id}'"
+        )
+
+        self.cursor.execute(query)
+        self.connect.commit()
+        self.cursor.close()
+
     def monitors_more_selling(self):
         monitors_info = []
 
