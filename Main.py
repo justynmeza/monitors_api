@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 from Connection import Connection
 
 class Main():
@@ -27,12 +27,14 @@ class Main():
 
         print(monitors)
         return(monitors)
-    
-    
-        
+    '''
+    @data.route('/data/monitors/selling')
+    def monitors_more_selling_action():
+        connect = Connection()
+        monitors = connect.monitors_more_selling()
 
-    data.run(debug=True)
-
-
+        print(monitors)
+        return(monitors)
+    '''
 Main()
 
