@@ -255,7 +255,7 @@ class Connection:
         for (monitor) in self.cursor:
             monitors_info.append({
                     'brand': monitor[0],
-                    'prices': monitor[1]
+                    'prices': self.convert_to_list(monitor[1])
                 })
             
         self.cursor.close()
@@ -279,7 +279,7 @@ class Connection:
         for (monitor) in self.cursor:
             monitors_info.append({
                     'size_screen': monitor[0],
-                    'prices': monitor[1]
+                    'prices': self.convert_to_list(monitor[1])
                 })
             
         self.cursor.close()
@@ -310,6 +310,10 @@ class Connection:
         monitors_json = json.dumps(monitors_info)
 
         return monitors_json
+    
+    def convert_to_list(self, data):
+        list = data.split(",")
+        return list
 
 #connect = Connection()
 
