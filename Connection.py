@@ -28,7 +28,23 @@ class Connection:
         return users_json
     
     def users_by_username_password(self, username, password):
-        pass
+        info_users = []
+
+        query = (f"SELECT USERNAME, PASSWORD FROM TBL_USERS WHERE USERNAME = '{username}' and PASSWORD = '{password}'")
+        
+
+        self.cursor.execute(query)
+
+        for (user) in self.cursor:
+            info_users.append({
+                    'USERNAME': user[0],
+                    'PASSWORD': user[1]
+                })
+        self.cursor.close()
+
+        users_json = json.dumps(info_users)
+
+        return users_json
 
     def monitors(self):
         monitors_info = []
@@ -55,7 +71,7 @@ class Connection:
         return monitors_json
 
 
-connect = Connection()
+#connect = Connection()
 
-connect.users_by_username_password('ADMIN', 'admin')
+#connect.users_by_username_password(username= 'ADMIN', password= 'admin')
 

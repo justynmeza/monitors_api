@@ -12,7 +12,13 @@ class Main():
         print(users)
         return users
     
-    
+    @data.route('/data/users/<username>/<password>')
+    def users_by_u_p(username, password):
+        connect = Connection()
+        users = connect.users_by_username_password(username=username, password=password)
+
+        print(users)
+        return users
 
     @data.route('/data/monitors')
     def monitors_action():
