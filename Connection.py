@@ -73,17 +73,17 @@ class Connection:
         self.cursor.close()
 
         monitors_json = json.dumps(monitors_info)
-
+        
         return monitors_json
 
     def monitors_more_selling(self):
         monitors_info = []
 
         query = (
-            "SELECT brand, COUNT(*) as count"+
-            "FROM tbl_monitors"+
-            "GROUP BY brand"+
-            "ORDER BY count DESC"+
+            "SELECT brand, COUNT(*) as count "+
+            "FROM tbl_monitors "+
+            "GROUP BY brand "+
+            "ORDER BY count DESC "+
             "LIMIT 1"
         )
 
@@ -98,14 +98,14 @@ class Connection:
         self.cursor.close()
 
         monitors_json = json.dumps(monitors_info)
-
+        print(monitors_info)
         return monitors_json
     
     def monitor_high_qualification(self):
         monitors_info = []
 
         query = (
-            "SELECT MAX(qualification) as max_qualification"+
+            "SELECT MAX(qualification) as max_qualification "+
             "FROM tbl_monitors"
         )
 
@@ -126,7 +126,7 @@ class Connection:
         monitors_info = []
 
         query = (
-            "SELECT COUNT(*) as total_records"+
+            "SELECT COUNT(*) as total_records "+
             "FROM tbl_monitors"
         )
 
@@ -147,7 +147,7 @@ class Connection:
         monitors_info = []
 
         query = (
-            "SELECT SUM(price) as total_price"+
+            "SELECT SUM(price) as total_price "+
             "FROM tbl_monitors"
         )
 
@@ -168,8 +168,8 @@ class Connection:
         monitors_info = []
 
         query = (
-            "SELECT DISTINCT brand"+
-            "FROM tbl_monitors"+
+            "SELECT DISTINCT brand "+
+            "FROM tbl_monitors "+
             "ORDER BY brand ASC"
         )
 
@@ -190,8 +190,8 @@ class Connection:
         monitors_info = []
 
         query = (
-            "SELECT brand, COUNT(*) as count"+
-            "FROM tbl_monitors"+
+            "SELECT brand, COUNT(*) as count "+
+            "FROM tbl_monitors "+
             "GROUP BY brand"
         )
 
@@ -213,10 +213,10 @@ class Connection:
         monitors_info = []
 
         query = (
-            "SELECT brand, COUNT(*) as count"+
-            "FROM tbl_monitors"+
-            "GROUP BY brand"+
-            "ORDER BY count DESC"+
+            "SELECT brand, COUNT(*) as count  "+
+            "FROM tbl_monitors  "+
+            "GROUP BY brand  "+
+            "ORDER BY count DESC  "+
             "LIMIT 3"
         )
 
@@ -238,15 +238,15 @@ class Connection:
         monitors_info = []
 
         query = (
-            "SELECT m.brand, GROUP_CONCAT(m.price ORDER BY m.price ASC SEPARATOR ', ') AS prices"+
-            "FROM tbl_monitors m"+
-            "INNER JOIN ("+
-                "SELECT brand, COUNT(*) AS count"+
-                "FROM tbl_monitors"+
-                "GROUP BY brand"+
-               "ORDER BY count DESC"+
-                "LIMIT 3"+
-            ") b ON m.brand = b.brand"+
+            "SELECT m.brand, GROUP_CONCAT(m.price ORDER BY m.price ASC SEPARATOR ', ') AS prices "+
+            "FROM tbl_monitors m "+
+            "INNER JOIN ( "+
+                "SELECT brand, COUNT(*) AS count "+
+                "FROM tbl_monitors "+
+                "GROUP BY brand "+
+               "ORDER BY count DESC "+
+                "LIMIT 3 "+
+            ") b ON m.brand = b.brand "+
             "GROUP BY m.brand"
         )
 
@@ -261,16 +261,16 @@ class Connection:
         self.cursor.close()
 
         monitors_json = json.dumps(monitors_info)
-
+        print(monitors_info)
         return monitors_json
     
     def monitors_price_x_size(self):
         monitors_info = []
 
         query = (
-            "SELECT size_screen, GROUP_CONCAT(price SEPARATOR ', ') AS prices"+
-            "FROM tbl_monitors"+
-            "GROUP BY size_screen"+
+            "SELECT size_screen, GROUP_CONCAT(price SEPARATOR ', ') AS prices "+
+            "FROM tbl_monitors "+
+            "GROUP BY size_screen "+
             "ORDER BY size_screen"
         )
 
@@ -292,8 +292,8 @@ class Connection:
         monitors_info = []
 
         query = (
-            "SELECT update_rate, COUNT(*) AS cantidad"+
-            "FROM tbl_monitors"+
+            "SELECT update_rate, COUNT(*) AS cantidad "+
+            "FROM tbl_monitors "+
             "GROUP BY update_rate"
         )
 
@@ -313,5 +313,5 @@ class Connection:
 
 #connect = Connection()
 
-#connect.users_by_username_password(username= 'ADMIN', password= 'admin')
+#connect.monitors_price_3_best_brands()
 

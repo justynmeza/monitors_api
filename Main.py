@@ -8,7 +8,7 @@ class Main():
     def users_action():
         connect = Connection()
         users = connect.users()
-        
+
         print(users)
         return users
     
@@ -27,6 +27,7 @@ class Main():
 
         print(monitors)
         return(monitors)
+    
     '''
     @data.route('/data/monitors/selling')
     def monitors_more_selling_action():
@@ -36,5 +37,6 @@ class Main():
         print(monitors)
         return(monitors)
     '''
+
 Main()
 
