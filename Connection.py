@@ -1,6 +1,5 @@
 import mysql.connector
 import json
-import requests
 
 class Connection:
     def __init__(self):

@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from Connection import Connection
 
 class Main():
     data = Flask(__name__)
+    CORS(data, resources={r"/*": {"origins": "*"}})
 
     #GET
     @data.route('/data/users')
