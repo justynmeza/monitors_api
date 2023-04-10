@@ -4,10 +4,10 @@ import json
 class Connection:
     def __init__(self):
         self.connect = mysql.connector.connect(
-            user = 'id20582148_root',
-            password = '1G+6kfUHkIcQ1}j[',
+            user = 'root',
+            password = '',
             host = 'localhost',
-            database = 'id20582148_mineria_t2_db'
+            database = 'mineria_t2_db'
         ) 
 
         self.cursor = self.connect.cursor()
