@@ -6,6 +6,10 @@ class Main():
     data = Flask(__name__)
     CORS(data, resources={r"/*": {"origins": "*"}})
 
+    @data.route('/')
+    def index():
+        return '<h1>API AMAZONE MONITORS<h1>'
+
     #GET
     @data.route('/data/users')
     def users_action():
@@ -179,5 +183,4 @@ class Main():
 
     data.run(debug=True)
 
-Main()
 
